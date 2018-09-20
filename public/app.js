@@ -140,7 +140,6 @@ $(document).on("click", "#savenote", function() {
 
 
 $(document).on("click", "#databaseClear", function() {
-  console.log("Hey, you getting this?")
   $.ajax({
     method: "DELETE",
     url: "/articles",

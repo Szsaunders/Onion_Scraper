@@ -33,8 +33,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/week18Populater", { useNewUrlParser: true });
+var MONGODB_URI =  process.env.MONGODB_URI || "mongodb://localhost/articles"
 
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // Routes
 
 
@@ -180,7 +182,7 @@ app.delete("/articles", function(req,res) {
 })
 
 app.delete("/notes/:id", function(req,res) {
-  db.Note.findOneAndDelete({_id: req.params.id})
+  db.Note.deleteOne({_id: req.params.id})
 })
 
 
