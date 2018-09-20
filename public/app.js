@@ -82,7 +82,7 @@ $(document).on("click", ".openNotesButton", function() {
         $h5 = $("<h5>").text(element.title)
         $p = $("<p>").text(element.body)
         $("#savedNotes").append($("<hr>")).append($h5).append($p)
-        $("#savedNotes").append("<button class='btn btn-warning btn-small deleteNoteBtn' data-id='" + element._id + "' id='savenote'>Delete Note</button>")
+        $("#savedNotes").append("<button class='btn btn-warning btn-small deleteNoteBtn' data-id='" + element._id + "'>Delete Note</button>")
       })
     }
     // A button to submit a new note, with the id of the article saved to it

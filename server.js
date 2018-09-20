@@ -179,10 +179,16 @@ app.post("/articles/:id", function(req, res) {
 
 app.delete("/articles", function(req,res) {
   db.Article.deleteMany({"saved": false})
+  .then(function(data) {
+    res.send("Unsaved articles deleted")
+  })
 })
 
 app.delete("/notes/:id", function(req,res) {
-  db.Note.deleteOne({_id: req.params.id})
+  db.Note.deleteOne({ _id: req.params.id })
+  .then(function(data) {
+    res.send("Note deleted")
+  })
 })
 
 
