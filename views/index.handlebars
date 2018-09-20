@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Onion Scraper</title>
+  <!-- Bootstrap CSS CDN  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+
+  <!-- Font Awesome CSS Icons (For cool glyphicons) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+  <!-- Style to fix the issue of text extending past panel length -->
+  <style>
+    .card-body a {
+      word-break: break-all;
+    }
+
+    .articleHeadline {
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Main Bootstrap Search -->
+  <div class="container">
+
+    <!-- Jumbotron for Title -->
+    <div class="jumbotron" style="background-color: #20315A ; color: white;">
+      <h1 class="text-center">
+        <strong>
+          <i class="fa fa-newspaper-o"></i>Onion Scraper</strong>
+      </h1>
+    </div>
+
+    <!-- Row for Searching New York Times -->
+    <div class="row">
+      <div class="col-sm-12">
+        <br>
+        <!-- First panel is for handling the search parameters -->
+        <div class="card">
+          <div class="card-header">
+            <strong >
+            <p class="text-center">Hit the Scrape Button to Begin!</p></strong>
+          </div>
+          <div class="text-center card-body">
+            <button id="scrapeStarter" class="btn btn-warning btn-large">Scrape Articles</button>
+            <button id="databaseClear" class="btn btn-danger btn-large">Clear Unsaved</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- This row will handle all of the retrieved articles -->
+    <div class="row">
+      <div class="col-sm-12">
+        <br>
+
+        <!-- This panel will initially be made up of a panel and wells for each of the articles retrieved -->
+        <div class="card">
+
+          <!-- Panel Heading for the retrieved articles box -->
+          <div class="card-header">
+            <strong>
+              <i class="fa fa-table"></i>Scraped Articles</strong>
+          </div>
+
+          <!-- This main panel will hold each of the resulting articles -->
+          <div class="card-body">
+            <ul id="article-section2">
+              {{!-- {{#each dbArticle}}
+              {{#unless (saved)}}
+                <li class='list-group-item articleHeadline'>
+                  <h3><a href={{link}}>{{headline}}</a> </h3>
+                  <p>{{des}}</p>
+                  <button type="button" class="saveArticleButton btn btn-primary" data-id={{_id}}>Save Article</button>
+                  <button type="button" class="openNotesButton btn btn-secondary"data-toggle="modal" data-id={{_id}}>Create Note</button>
+                  </li>
+                  {{/unless}}
+              {{/each}} --}}
+              </ul>
+           </div>
+          </div>
+       </div>
+       </div>
+
+      {{!-- And this row will hold all the saved articles --}}
+      <div class="row">
+      <div class="col-sm-12">
+        <br>
+
+        <!-- This panel will initially be made up of a panel and wells for each of the articles retrieved -->
+        <div class="card">
+
+          <!-- Panel Heading for the retrieved articles box -->
+          <div class="card-header">
+            <strong>
+              <i class="fa fa-table"></i> Saved Articles</strong>
+          </div>
+
+          <!-- This main panel will hold each of the resulting articles -->
+          <div class="card-body" id="article-section">
+            <ul id="article-section">
+              {{#each dbArticle}}
+              {{#if saved}}
+                <li class='list-group-item articleHeadline'>
+                 <h3><a href={{link}}>{{headline}}</a> </h3>
+                  <p>{{des}}</p>
+                  <button type="button" class="openNotesButton btn btn-secondary"data-toggle="modal" data-id={{_id}}>Create Note</button>
+                  </li>
+              {{/if}}
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{{!-- Modal for notes--}}
+<div class="modal" id="notesModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="notesModalTitle" class="modal-title">Notes for Article: </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="savedNotes"></div>
+        {{!-- <div class="form-group">
+                <label for="titleText">Title</label>
+                <input type="text" class="form-control" id="titleText">
+              </div>
+        <div class="form-group">
+                <label for="notesText">Text:</label>
+                <textarea id-"notesText" rows="4" cols="50"></textarea>
+              </div> --}}
+
+      </div>
+      <div class="modal-footer">
+        {{!-- <button type="button" class="btn btn-primary">Save Note</button> --}}
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Footer Region -->
+    <div class="row">
+      <div class="col-sm-12">
+
+        <!-- Line Break followed by closing -->
+        <hr>
+
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- jQuery JS -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <!-- Code to the JavaScript File -->
+  <script src="/app.js"></script>
+
+</body>
+
+</html>
